@@ -26,6 +26,6 @@ public class Main {
         } while (opcao != 0);
 
         scanner.close();
-        System.out.println("Calculadora encerrada!");
+        System.out.println("Calculadora encerrada com sucesso!");
     }
 }
