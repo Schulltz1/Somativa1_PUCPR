@@ -10,11 +10,11 @@
 
 ---
 
-## 📋 Informações sobre o Projeto
+## 📋 Informações relacionadas ao Projeto
 
 Este projeto foi desenvolvido como exercício prático de **Programação Orientada a Objetos** em Java, implementando uma calculadora com arquitetura bem estruturada e seguindo boas práticas de desenvolvimento back-end.
 
-### 🎯 Objetivos de Aprendizado
+### 🎯 Objetivos de Aprendizado!
 - ✅ Aplicar conceitos fundamentais de POO
 - ✅ Implementar separação de responsabilidades
 - ✅ Praticar tratamento de exceções
@@ -47,7 +47,7 @@ Este projeto foi desenvolvido como exercício prático de **Programação Orient
 
 ---
 
-## 🎨 Conceitos de POO 
+## 🎨 Conceitos de Poo 
 
 <details>
 <summary><b>🔒 Encapsulamento</b></summary>
@@ -88,9 +88,9 @@ Este projeto foi desenvolvido como exercício prático de **Programação Orient
 
 ---
 
-## 🚀 Como Executar
+## 🚀 Como Executar o projeto
 
-### 📋 Requisitos
+### 📋 Requisitos para a utilização
 - ☕ **Java 8+** instalado
 - 💻 **IDE** (IntelliJ IDEA, Eclipse, VS Code) ou terminal
 
