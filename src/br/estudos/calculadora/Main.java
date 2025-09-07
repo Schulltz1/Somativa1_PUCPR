@@ -10,11 +10,8 @@ public class Main {
         int opcao;
 
         do {
-<<<<<<< HEAD
+
             System.out.println("\n-- CALCULADORA --");
-=======
-            System.out.println("\n CALCULADORA ");
->>>>>>> desenvolvimento
             System.out.println("1. Soma");
             System.out.println("2. Subtração");
             System.out.println("3. Multiplicação");
