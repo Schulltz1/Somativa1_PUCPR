@@ -10,7 +10,8 @@ public class Main {
         int opcao;
 
         do {
-            System.out.println("\n CALCULADORA ");
+
+            System.out.println("\n-- CALCULADORA --");
             System.out.println("1. Soma");
             System.out.println("2. Subtração");
             System.out.println("3. Multiplicação");
@@ -26,6 +27,6 @@ public class Main {
         } while (opcao != 0);
 
         scanner.close();
-        System.out.println("Calculadora encerrada!");
+        System.out.println("Calculadora encerrada com sucesso!");
     }
 }
