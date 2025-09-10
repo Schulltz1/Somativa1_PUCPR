@@ -87,3 +87,12 @@ jobs:
           echo "=== Deploy simulado ==="
           echo "Docker image carregada e pronta para deploy"
           docker images | grep calculadora
+
+  discord:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Discord Webhook
+        uses: johnnyhuy/actions-discord-git-webhook@main
+        with:
+          webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
