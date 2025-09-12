@@ -1,16 +1,21 @@
 package br.estudos.calculadora;
 
 import br.estudos.calculadora.servico.CalculadoraService;
+import br.estudos.calculadora.modelo.Calculadora;
+import br.estudos.calculadora.util.ValidadorEntrada;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        CalculadoraService service = new CalculadoraService();
+        // Correção da linha 8 - criar as dependências necessárias
+        Calculadora calculadora = new Calculadora();
+        ValidadorEntrada validador = new ValidadorEntrada();
+        CalculadoraService service = new CalculadoraService(calculadora, validador);
+
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
         do {
-
             System.out.println("\n-- CALCULADORA --");
             System.out.println("1. Soma");
             System.out.println("2. Subtração");
