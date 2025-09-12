@@ -1,12 +1,38 @@
-FROM openjdk:17-jdk-slim
+# Build stage
+FROM openjdk:17-jdk-slim AS build
 
 WORKDIR /app
 
-COPY . .
+# Instalar Maven
+RUN apt-get update && apt-get install -y maven && apt-get clean
 
-RUN mkdir -p target/classes
+# Copiar arquivos de configuração do Maven primeiro (para cache)
+COPY pom.xml .
 
-RUN find . -name "*.java" > sources.txt && \
-    javac -d target/classes -cp . @sources.txt
+# Baixar dependências (fica em cache se pom.xml não mudar)
+RUN mvn dependency:go-offline -B
 
-CMD ["java", "-cp", "target/classes", "br.estudos.calculadora.Main"]
+# Copiar código fonte
+COPY src ./src
+
+# Compilar e gerar JAR
+RUN mvn clean package -DskipTests
+
+# Runtime stage
+FROM openjdk:17-slim
+
+WORKDIR /app
+
+# Copiar apenas o JAR do stage anterior
+COPY --from=build /app/target/*.jar app.jar
+
+# Criar usuário não-root para segurança
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+RUN chown appuser:appuser app.jar
+USER appuser
+
+# Expor porta (se necessário)
+EXPOSE 8080
+
+# Comando para executar
+ENTRYPOINT ["java", "-jar", "app.jar"]
