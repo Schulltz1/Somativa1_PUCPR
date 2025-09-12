@@ -217,7 +217,9 @@ jobs:
       - name: Notify test results
         if: always()
         uses: actions/github-script@v7
+        continue-on-error: true  # Não falha se não conseguir notificar
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const jobResults = {
               test: '${{ needs.test.result }}',
