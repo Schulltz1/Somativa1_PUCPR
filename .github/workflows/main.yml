@@ -148,40 +148,10 @@ jobs:
           name: docker-image
           path: docker-image.tar
 
-  deploy:
-    name: Deploy (Simulation)
-    needs: [test, build, docker]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download Docker image
-        uses: actions/download-artifact@v4
-        with:
-          name: docker-image
-          path: .
-
-      - name: Load Docker image
-        run: |
-          docker load < docker-image.tar
-
-      - name: Deploy simulation
-        run: |
-          echo "=== 🚀 Deploy Simulation ==="
-          echo "✅ Docker image loaded successfully"
-          echo "✅ Application ready for production deployment"
-          echo "📋 Image details:"
-          docker images | grep calculadora
-          echo ""
-          echo "🔗 Deployment would happen here in a real environment"
-
   notify:
     name: Notifications
     runs-on: ubuntu-latest
-    needs: [test, build, docker, deploy]  # Removido security
+    needs: [test, build, docker]  # Removido deploy
     if: always()
 
     steps:
@@ -206,8 +176,7 @@ jobs:
             const jobResults = {
               test: '${{ needs.test.result }}',
               build: '${{ needs.build.result }}',
-              docker: '${{ needs.docker.result }}',
-              deploy: '${{ needs.deploy.result }}'
+              docker: '${{ needs.docker.result }}'
             };
             
             const status = Object.values(jobResults).every(result => result === 'success') 
